@@ -137,16 +137,22 @@ const App: React.FC = () => {
               marginTop: "10px",
             }}
           >
-            {notes.map((note, index) => (
-              <DraggableNote
-                key={note.id}
-                note={{ ...note, color: getNoteColor(note) }}
-                index={index}
-                editNote={editNote}
-                deleteNote={deleteNote}
-                handleOpenModal={handleOpenModal}
-              />
-            ))}
+            {notes.length === 0 ? (
+              <Typography variant="h6" color="text.secondary">
+                No notes available. Please add some.
+              </Typography>
+            ) : (
+              notes.map((note, index) => (
+                <DraggableNote
+                  key={note.id}
+                  note={{ ...note, color: getNoteColor(note) }}
+                  index={index}
+                  editNote={editNote}
+                  deleteNote={deleteNote}
+                  handleOpenModal={handleOpenModal}
+                />
+              ))
+            )}
           </div>
         </SortableContext>
       </DndContext>
